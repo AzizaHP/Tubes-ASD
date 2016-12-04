@@ -4,7 +4,7 @@
 #define next(P) P->next
 #define prev(P) P->prev
 #define info(P) P->info
-
+//#include "list_parent.h"
 #include <string>
 #include <iostream>
 

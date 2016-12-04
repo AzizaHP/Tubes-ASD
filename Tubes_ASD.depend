@@ -1,23 +1,23 @@
 # depslib dependency file v1.0
-1480595666 source:a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\list_child.cpp
+1480819326 source:a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\list_child.cpp
 	"list_child.h"
 	"list_parent.h"
 
-1480661936 a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\list_child.h
+1480755135 a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\list_child.h
 	<string>
 	<iostream>
 
-1480657614 source:a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\list_parent.cpp
+1480823100 source:a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\list_parent.cpp
 	<stdlib.h>
 	"list_parent.h"
 	"list_child.h"
 
-1480594187 a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\list_parent.h
+1480760379 a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\list_parent.h
 	<iostream>
 	<windows.h>
 	"list_child.h"
 
-1480661936 source:a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\main.cpp
+1480823407 source:a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\main.cpp
 	<iostream>
 	<stdlib.h>
 	"list_parent.h"

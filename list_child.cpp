@@ -2,11 +2,20 @@
 #include "list_parent.h"
 
 void createList_Child (List_Child &L){
+    /**
+    * NIM : 1301154468
+    * FS : first(L) dan last(L) diset NULL;
+    */
     L.first = NULL;
     L.last = NULL;
 }
 
 address_child alokasi_Child (infotype_child x){
+    /**
+    * NIM : 1301154468
+    * FS : mengembalikan elemen list parent baru dengan info = x,
+           next dan prev elemen diset NULL;
+    */
     address_child P = new ElmList_Child;
     info(P) = x;
     next(P) = NULL;
@@ -15,10 +24,19 @@ address_child alokasi_Child (infotype_child x){
 }
 
 void dealokasi_Child (address_child &P){
+    /**
+    * NIM : 1301154468
+    * FS : menghapus elemen yang ditunjuk oleh P
+    */
     delete P;
 }
 
 void insertFirst_Child (List_Child &L, address_child P){
+    /**
+    * NIM :1301154468
+    * IS : List Child L mungkin kosong
+    * FS : elemen yang ditunjuk P menjadi elemen pertama pada List Child L
+    */
     if(L.first == NULL) {
         L.last = P;
         L.first = P;
@@ -30,7 +48,11 @@ void insertFirst_Child (List_Child &L, address_child P){
 }
 
 void insertAfter_Child (List_Child &L, address_child &Q, address_child &P){
-
+    /**
+    * NIM : 1301154468
+    * IS : List Parent L mungkin kosong
+    * FS : elemen yang ditunjuk P menjadi elemen yang ditambahkan diantara elemen Q pada List Child L
+    */
     next(P) = next(Q);
     P->prev = Q;
     if (next(Q)!= NULL){
@@ -41,6 +63,11 @@ void insertAfter_Child (List_Child &L, address_child &Q, address_child &P){
 }
 
 void insertLast_Child  (List_Child &L, address_child P){
+    /**
+    * NIM : 1301154468
+    * IS : List Parent L mungkin kosong
+    * FS : elemen yang ditunjuk P menjadi elemen terakhir pada List Child L
+    */
     if (L.first==NULL){
         L.first = P;
         L.last = P;
@@ -52,6 +79,11 @@ void insertLast_Child  (List_Child &L, address_child P){
 }
 
 void deleteFirst_Child (List_Child &L, address_child P){
+    /**
+    * NIM : 1301150440
+    * IS : List Child L mungkin kosong
+    * FS : elemen pertama di dalam List Child L dilepas dan disimpan/ditunjuk oleh P
+    */
     if (L.first != NULL){
         P = L.first;
         if (next(P) == NULL){
@@ -66,6 +98,11 @@ void deleteFirst_Child (List_Child &L, address_child P){
 }
 
 void deleteAfter_Child (List_Child &L, address_child &P, address_child &Q){
+    /**
+    * NIM : 1301150440
+    * IS : List Child L tidak kosong
+    * FS : P adalah alamat dari next(Q), menghapus next(Q) dari List Child L
+    */
     if (L.first != NULL) {
         if (next(L.first)==L.first) {
             P = L.first;
@@ -82,6 +119,11 @@ void deleteAfter_Child (List_Child &L, address_child &P, address_child &Q){
 }
 
 void deleteLast_Child (List_Child &L, address_child &P){
+    /**
+    * NIM : 1301150440
+    * IS : List Child L mungkin kosong
+    * FS : elemen terakhir didalam List Child L dilepas dan disimpan/ditunjuk oleh P
+    */
     if(next(L.first) == NULL)
     {
         deleteFirst_Child(L,P);
@@ -103,6 +145,7 @@ void deleteLast_Child (List_Child &L, address_child &P){
 void deletebyID_Child (List_Child &L, address_child &P)
 {
     /**
+    * NIM : 1301150440
     * IS : List L mungkin kosong
     * FS : 1 elemen dengan id info = x.id dihapus dari list (dealokasi)
     */
@@ -126,20 +169,20 @@ void deletebyID_Child (List_Child &L, address_child &P)
 
 void insertionSort_Child(List_Child &L){
     /**
-    * IS : List mungkin kosong
-    * PR : mengurutkan elemen di dalam List L menggunakan algoritma insertion sort
-    * FS : elemen di dalam List L terurut
+    * NIM : 1301154468
+    * IS : List Child mungkin kosong
+    * PR : mengurutkan elemen di dalam List Child L menggunakan algoritma insertion sort
+    * FS : elemen di dalam List Child L terurut descending
     */
-
     address_child batas, P, Q, R;
     batas = (L.first->next);
     while (batas != NULL) {
         P = L.first;
-        while ((info(P).ID_Child < info(batas).ID_Child) && (P->next != batas)) {
+        while ((info(P).totalHarga > info(batas).totalHarga) && (P->next != batas)) {
             Q = P;
             P = P->next;
         }
-        if (info(batas).ID_Child < info(P).ID_Child) {
+        if (info(batas).totalHarga > info(P).totalHarga) {
             R = batas;
             infotype_child tmp = batas->info;
             info(batas) = info(P);
@@ -147,10 +190,15 @@ void insertionSort_Child(List_Child &L){
         }
         batas = (batas->next);
     }
-    printInfo_Child(L);
+    //printInfo_Child(L);
 }
 
 void ASC_Child(List_Child &L, address_child &P){
+    /**
+    * NIM : 1301154468
+    * IS : Data tidak terurut secara Ascending
+    * FS : Mengurutkan List Parent berdasarkan ID secara Ascending
+    */
     if (L.first == NULL){
         insertFirst_Child(L,P);
     } else {
@@ -177,8 +225,13 @@ void ASC_Child(List_Child &L, address_child &P){
 }
 
 address_child findElm_Child(List_Child L, infotype_child x){
+    /**
+    * NIM : 1301154468
+    * IS : List Child L mungkin kosong
+    * FS : mengembalikan elemen parent dengan info = x,
+           mengembalikan NULL jika tidak ditemukan
+    */
     address_child P = L.first;
-
     while (P != NULL){
         if (info(P).ID_Child == x.ID_Child){
             return P;
@@ -190,6 +243,7 @@ address_child findElm_Child(List_Child L, infotype_child x){
 
 address_child sentinelSearch(List_Child L, infotype_child y){
     /**
+    * NIM : 1301154468
     * IS : List mungkin kosong
     * PR : mencari elemen dengan ID = infotype x menggunakan bantuan sentinel
     * FS : mengembalikan address elemen dengan ID infotype x jika ditemukan,
@@ -215,13 +269,19 @@ address_child sentinelSearch(List_Child L, infotype_child y){
 }
 
 void printInfo_Child (List_Child L){
+    /**
+    * NIM : 1301154468
+    * FS : menampilkan info seluruh elemen List Child L
+    */
     address_child C = L.first;
     while (C != NULL) {
         cout << "              ------------------------------------" << endl;
         cout << "              ID Child   : " << info(C).ID_Child << endl;
         cout << "              Makanan    : " << info(C).mknan << endl;
         cout << "              Porsi      : " << info(C).porsi << endl;
+        cout << "              Diskon     : 0%" << endl;
         cout << "              Harga      : " << info(C).harga << endl;
+        info(C).totalHarga = info(C).harga + (info(C).harga*10/100);
         cout << "              Total Harga: " << info(C).totalHarga<< endl;
         cout << "              ------------------------------------" << endl;
         cout << endl;

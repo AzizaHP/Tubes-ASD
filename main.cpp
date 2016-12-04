@@ -13,7 +13,6 @@ int main()
     address_child C2 = NULL;
     address_parent P1 = NULL;
     address_parent P2 = NULL;
-
     int menus = 0;
 
     List_Parent LP1, LP2;
@@ -33,7 +32,7 @@ int main()
     mn1.minuman = "Teh Botol Sosro";
     mn1.dessert = "Es Buah";
     mn1.hargaAwal = 15000;
-    mn1.ppn = 10;
+    //mn1.ppn = 10;
     P1 = alokasi_Parent(mn1);
     ASC_Parent(LP1, P1);
     //insertLast_Parent (LP1,P1);
@@ -43,7 +42,7 @@ int main()
     mn2.minuman = "Teh Botol Sosro";
     mn2.dessert = "Pudding";
     mn2.hargaAwal = 13000;
-    mn2.ppn = 10;
+    //mn2.ppn = 10;
     P1 = alokasi_Parent(mn2);
     ASC_Parent(LP1, P1);
     //insertFirst_Parent (LP1,P1);
@@ -53,7 +52,7 @@ int main()
     mn3.minuman = "Es Jeruk";
     mn3.dessert = "Es Krim";
     mn3.hargaAwal = 16000;
-    mn3.ppn = 10;
+    //mn3.ppn = 10;
     P1 = alokasi_Parent(mn3);
     P2 = findElm_Parent(LP1, mn2);
     ASC_Parent(LP1, P1);
@@ -66,7 +65,7 @@ int main()
     m1.porsi = 'R';
     m1.harga = 18000;
     P1 = findElm_Parent(LP1, mn1);
-    m1.totalHarga = (m1.harga*mn1.ppn/100)+m1.harga;
+    m1.totalHarga = (m1.harga*10/100)+m1.harga;
     C1 = alokasi_Child(m1);
     ASC_Child(P1->child, C1);
     //insertFirst_Child(child(P1),C1);
@@ -111,25 +110,12 @@ int main()
         cout << "|    2. Search and Delete         |" << endl;
         cout << "|    3. Search and View           |" << endl;
         cout << "|    4. View All                  |" << endl;
-        cout << "|    5. Sorting                   |" << endl;
-        cout << "|    6. Reporting                 |" << endl;
+        cout << "|    5. Edit Data                 |" << endl;
+        cout << "|    6. Sorting                   |" << endl;
+        cout << "|    7. Reporting                 |" << endl;
         cout << "===================================" << endl;
         cout << endl;
         cout << "Pilihan: "; cin >> menus;
-//        gotoxy(23,1); cout << "===================================" << endl;
-//        gotoxy(23,2); cout << "|            TUBES ASD            |" << endl;
-//        gotoxy(23,3); cout << "|                                 |" << endl;
-//        gotoxy(23,4); cout << "|    1. Insert Parent             |" << endl;
-//        gotoxy(23,5); cout << "|    2. Insert Child              |" << endl;
-//        gotoxy(23,6); cout << "|    3. Delete Parent             |" << endl;
-//        gotoxy(23,7); cout << "|    4. Delete Child              |" << endl;
-//        gotoxy(23,8); cout << "|    5. Search Parent             |" << endl;
-//        gotoxy(23,9); cout << "|    6. Search Child              |" << endl;
-//        gotoxy(23,10); cout << "|    7. View All                  |" << endl;
-//        gotoxy(23,11); cout << "|    8. Sorting                   |" << endl;
-//        gotoxy(23,12); cout << "|    9. Reporting                 |" << endl;
-//        gotoxy(23,13); cout << "===================================" << endl;
-//        gotoxy(23,14); cout << "Pilihan: "; cin >> menus;
         switch (menus) {
             case 1:
             {
@@ -154,8 +140,7 @@ int main()
                         cin >> x.dessert;
                         cout << "Harga          : ";
                         cin >> x.hargaAwal;
-                        cout << "PPN            : ";
-                        cin >> x.ppn;
+                        cout << "PPN            : 10%" << endl;
                         P1 = alokasi_Parent(x);
                         //insertFirst_Parent(LP1, P1);
                         ASC_Parent(LP1, P1);
@@ -165,11 +150,11 @@ int main()
                     cout << "Inputkan ID Child ke ID Parent: ";
                     cin >> x.ID_Parent;
                     address_parent tmp = findElm_Parent(LP1, x);
-                    if (findElm_Parent(LP1, x)){
+                    if (tmp != NULL){
                         cout << "ID Makanan: ";
                         cin >> y.ID_Child;
-                        //cout<<"Find Element anak"<<findElm_Child(LC1, y);
-                        if (findElm_Child(LC1, y)==NULL){
+                        address_child tmpc = findElm_Child(tmp->child, y);
+                        if (tmpc == NULL){
                             cout << "Makanan: ";
                             cin >> y.mknan;
                             cout << "Porsi: ";
@@ -179,7 +164,12 @@ int main()
                             C1 = alokasi_Child(y);
                             //insertFirst_Child (tmp->child, C1);
                             ASC_Child(tmp->child,C1);
+                        } else {
+                            cout << "ID Child sudah ada" << endl;
                         }
+                    } else {
+                        cout << "ID Parent tidak ditemukan" << endl;
+                        cout << endl;
                     }
                 }
                 break;
@@ -275,6 +265,7 @@ int main()
                             cout << "Makanan        : " << C1->info.mknan << endl;
                             cout << "Porsi          : " << C1->info.porsi << endl;
                             cout << "Harga          : " << C1->info.harga << endl;
+                            cout << "Diskon         : 0%" << endl;
                             cout << "Total (+PPN)   : " << C1->info.totalHarga<< endl;
                             cout << "-------------------------" << endl;
                         } else {
@@ -287,33 +278,94 @@ int main()
             case 4:
             {
                 printInfo_Parent(LP1);
-                //printInfo_Child(LC1);
                 break;
             }
             case 5:
             {
-                insertionSort_Parent(LP1);
+                system("cls");
+                cout << "     Edit Data" << endl;
+                cout << "1. Edit Parent" << endl;
+                cout << "2. Edit Child " << endl;
+                int edit=0;
+                cin >> edit;
+                if (edit == 1){
+                    cout << "Edit Parent pada ID: ";
+                    cin >> x.ID_Parent;
+                    P1 = findElm_Parent(LP1,x);
+                    if (P1 != NULL){
+                        cout << "Menu Makanan   : ";
+                        cin >> info(P1).menu_makanan;
+                        cout << "Minuman        : ";
+                        cin >> info(P1).minuman;
+                        cout << "Dessert        : ";
+                        cin >> info(P1).dessert;
+                        cout << "Harga          : ";
+                        cin >> info(P1).hargaAwal;
+                        cout << "PPN            : 10%"<< endl;
+                    } else {
+                        cout << "ID Tidak ditemukan" << endl;
+                    }
+                } else if (edit == 2){
+                    cout << "Edit ID Child Pada ID Parent: ";
+                    cin >> x.ID_Parent;
+                    P1 = findElm_Parent(LP1,x);
+                    if (P1 != NULL){
+                        cout << "Edit Data pada ID Child: ";
+                        cin >> y.ID_Child;
+                        C1 = findElm_Child(P1->child, y);
+                        if (C1 != NULL){
+                            cout << "Makanan: ";
+                            cin >> info(C1).mknan;
+                            cout << "Porsi: ";
+                            cin >> info(C1).porsi;
+                            cout << "Harga: ";
+                            cin >> info(C1).harga;
+                        } else {
+                            cout << "ID Tidak Ditemukan" << endl;
+                        }
+                    } else {
+                        cout << "ID Parent tidak ditemukan" << endl;
+                    }
+                }
                 break;
             }
             case 6:
             {
-                //address_child cc = L.
-                printInfo_Parent(LP1);
-                C1 = LC1.first;
-                while (C1 != NULL) {
-                    cout << "              ------------------------------------" << endl;
-                    cout << "              Makanan    : " << info(C1).mknan << endl;
-                    cout << "              Porsi      : " << info(C1).porsi << endl;
-                    cout << "              Total Harga: " << info(C1).totalHarga<< endl;
-                    cout << "              ------------------------------------" << endl;
-                    cout << endl;
-                    C1 = C1->next;
+                system("cls");
+                cout << "       Sorting"<< endl;
+                cout << "1. Parent" << endl;
+                cout << "2. Child" << endl;
+                int sor = 0;
+                cin >> sor;
+                if (sor == 1){
+                    insertionSort_Parent(LP1);
+                } else {
+
+                }
+
+                break;
+            }
+            case 7:
+            {
+                P1 = LP1.first;
+                while (P1 != NULL){
+                    C1 = P1->child.first;
+                    while (C1 != NULL) {
+                        cout << "              ------------------------------------" << endl;
+                        cout << "              Makanan    : " << info(C1).mknan << endl;
+                        cout << "              Porsi      : " << info(C1).porsi << endl;
+                        cout << "              Total Harga: " << info(C1).totalHarga<< endl;
+                        cout << "              ------------------------------------" << endl;
+                        cout << endl;
+                        C1 = C1->next;
+                    }
+                P1 = next(P1);
                 }
                 break;
             }
             default:
-                cout << "Pilihan menu hanya 9" << endl;
+                cout << "Pilihan menu hanya 7" << endl;
             }
-        } while (menus != 9);
+        } while (menus != 0);
     return 0;
 }
