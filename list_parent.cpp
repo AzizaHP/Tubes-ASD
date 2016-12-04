@@ -246,10 +246,10 @@ void deletebyID_Parent (List_Parent &L, address_parent &P)
 void insertionSort_Parent(List_Parent &L)
 {
     /**
-    * NIM : 1301150440
+    * NIM : 1301150440 dan 1301154468
     * IS : List Parent mungkin kosong
     * PR : mengurutkan elemen di dalam List Parent L menggunakan algoritma insertion sort
-    * FS : elemen di dalam List Parent L terurut descending
+    * FS : elemen di dalam List Parent L terurut ascending berdasarkan harga
     */
 
     address_parent batas, P, Q, R;
@@ -258,12 +258,12 @@ void insertionSort_Parent(List_Parent &L)
     while (batas != NULL)
     {
         P = L.first;
-        while ((P->info.hargaAwal > batas->info.hargaAwal) && (P->next != batas))
+        while ((P->info.hargaAwal < batas->info.hargaAwal) && (P->next != batas))
         {
             Q = P;
             P = P->next;
         }
-        if (batas->info.hargaAwal > P->info.hargaAwal)
+        if (batas->info.hargaAwal < P->info.hargaAwal)
         {
             R = batas;
             infotype_parent tmp = batas->info;
@@ -274,22 +274,6 @@ void insertionSort_Parent(List_Parent &L)
             batas->child = P->child;
             P->child = c;
 
-//            address_child b, cc, zz;
-//            b = c.first->next;
-//
-//            while (b != c.last ){
-//                cc = c.first;
-//                while ((cc->info.totalHarga > b->info.totalHarga) && (cc->next != b)){
-//                    zz = cc;
-//                    cc = cc->next;
-//                }
-//                if (b->info.totalHarga > cc->info.totalHarga){
-//                    infotype_child tempc = b->info;
-//                    b->info = zz->info;
-//                    zz->info = tempc;
-//                }
-//            }
-//            b = next(b);
         }
         batas = (batas->next);
     }

@@ -48,7 +48,6 @@ void deleteAfter_Child (List_Child &L, address_child &P, address_child &Q);
 void deleteLast_Child  (List_Child &L, address_child &P);
 void deletebyID_Child (List_Child &L, address_child &P);
 
-void insertionSort_Child(List_Child &L);
 address_child sentinelSearch(List_Child L, infotype_child y);
 address_child findElm_Child (List_Child L, infotype_child x);
 void printInfo_Child (List_Child L);

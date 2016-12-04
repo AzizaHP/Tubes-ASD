@@ -331,18 +331,7 @@ int main()
             }
             case 6:
             {
-                system("cls");
-                cout << "       Sorting"<< endl;
-                cout << "1. Parent" << endl;
-                cout << "2. Child" << endl;
-                int sor = 0;
-                cin >> sor;
-                if (sor == 1){
-                    insertionSort_Parent(LP1);
-                } else {
-
-                }
-
+                insertionSort_Parent(LP1);
                 break;
             }
             case 7:

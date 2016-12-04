@@ -167,32 +167,6 @@ void deletebyID_Child (List_Child &L, address_child &P)
     }
 }
 
-void insertionSort_Child(List_Child &L){
-    /**
-    * NIM : 1301154468
-    * IS : List Child mungkin kosong
-    * PR : mengurutkan elemen di dalam List Child L menggunakan algoritma insertion sort
-    * FS : elemen di dalam List Child L terurut descending
-    */
-    address_child batas, P, Q, R;
-    batas = (L.first->next);
-    while (batas != NULL) {
-        P = L.first;
-        while ((info(P).totalHarga > info(batas).totalHarga) && (P->next != batas)) {
-            Q = P;
-            P = P->next;
-        }
-        if (info(batas).totalHarga > info(P).totalHarga) {
-            R = batas;
-            infotype_child tmp = batas->info;
-            info(batas) = info(P);
-            info(P) = tmp;
-        }
-        batas = (batas->next);
-    }
-    //printInfo_Child(L);
-}
-
 void ASC_Child(List_Child &L, address_child &P){
     /**
     * NIM : 1301154468
