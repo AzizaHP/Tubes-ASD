@@ -70,7 +70,7 @@ int main()
     ASC_Child(P1->child, C1);
     //insertFirst_Child(child(P1),C1);
 
-    m2.ID_Child = 1;
+    m2.ID_Child = 5;
     m2.mknan = "Nasi Goreng Kambing";
     m2.porsi = 'L';
     m2.harga = 25000;
@@ -80,7 +80,7 @@ int main()
     //insertLast_Child(child(P1), C1);
     ASC_Child(P1->child, C1);
 
-    m2.ID_Child = 2;
+    m2.ID_Child = 8;
     m2.mknan = "Nasi Goreng Spesial";
     m2.porsi = 'L';
     m2.harga = 40000;
@@ -90,7 +90,7 @@ int main()
     //insertFirst_Child(child(P1), C1);
     ASC_Child(P1->child, C1);
 
-    m2.ID_Child = 0;
+    m2.ID_Child = 3;
     m2.mknan = "Nasi Goreng Seafood";
     m2.porsi = 'R';
     m2.harga = 35000;

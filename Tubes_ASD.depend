@@ -7,7 +7,7 @@
 	<string>
 	<iostream>
 
-1480839696 source:a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\list_parent.cpp
+1480839766 source:a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\list_parent.cpp
 	<stdlib.h>
 	"list_parent.h"
 	"list_child.h"
@@ -17,7 +17,7 @@
 	<windows.h>
 	"list_child.h"
 
-1480839417 source:a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\main.cpp
+1480840128 source:a:\telkom university\kuliah\semester iii\struktur data\tubes_asd\main.cpp
 	<iostream>
 	<stdlib.h>
 	"list_parent.h"
